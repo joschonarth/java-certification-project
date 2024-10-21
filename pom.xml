@@ -12,7 +12,7 @@
 	<artifactId>certification-project</artifactId>
 	<version>1.0.0</version>
 	<name>certification-project</name>
-	<description>Cerfitication Project</description>
+	<description>Certification Project with Spring Boot</description>
 	<url/>
 	<licenses>
 		<license/>
