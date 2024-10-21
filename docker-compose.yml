@@ -1,0 +1,12 @@
+version: '3.8'
+
+services:
+  postgres_certification:
+    container_name: postgres_certification
+    image: bitnami/postgresql:13.16.0
+    ports:
+      - 5432:5432
+    environment:
+      - POSTGRES_USER=admin
+      - POSTGRES_PASSWORD=admin
+      - POSTGRES_DB=pg_certification
