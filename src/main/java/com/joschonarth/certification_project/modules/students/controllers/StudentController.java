@@ -6,7 +6,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.joschonarth.certification_project.modules.students.dto.StudentCertificationAnswerDTO;
 import com.joschonarth.certification_project.modules.students.dto.VerifyCertificationDTO;
+import com.joschonarth.certification_project.modules.students.useCases.StudentCertificationAnswersUseCase;
 import com.joschonarth.certification_project.modules.students.useCases.VerifyCertificationUseCase;
 
 @RestController
@@ -16,6 +18,9 @@ public class StudentController {
     @Autowired
     private VerifyCertificationUseCase verifyCertificationUseCase;
 
+    @Autowired
+    private StudentCertificationAnswersUseCase studentCertificationAnswersUseCase;
+
     @PostMapping("/verifyCertification")
     public String verifyCertification(@RequestBody VerifyCertificationDTO verifyCertificationDTO) {
 
@@ -24,7 +29,11 @@ public class StudentController {
             return "Usuário já fez a prova";
         }
         return "Usuário pode fazer a prova";
+    }
 
+    @PostMapping("/certification/answer")
+    public StudentCertificationAnswerDTO certificationAnswer(@RequestBody StudentCertificationAnswerDTO studentCertificationAnswerDTO) {
+        return studentCertificationAnswersUseCase.execute(studentCertificationAnswerDTO);
     }
     
 }
