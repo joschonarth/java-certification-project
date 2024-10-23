@@ -14,7 +14,7 @@ import lombok.NoArgsConstructor;
 public class QuestionAnswerDTO {
 
     private UUID questionID;
-    private String alternativeID;
+    private UUID alternativeID;
     private boolean isCorrect;
     
 }
