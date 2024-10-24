@@ -3,6 +3,7 @@ package com.joschonarth.certification_project.modules.students.useCases;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
+import java.util.concurrent.atomic.AtomicInteger;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -10,6 +11,7 @@ import org.springframework.stereotype.Service;
 import com.joschonarth.certification_project.modules.questions.entities.QuestionEntity;
 import com.joschonarth.certification_project.modules.questions.repositories.QuestionRepository;
 import com.joschonarth.certification_project.modules.students.dto.StudentCertificationAnswerDTO;
+import com.joschonarth.certification_project.modules.students.dto.VerifyCertificationDTO;
 import com.joschonarth.certification_project.modules.students.entities.AnswersCertificationsEntity;
 import com.joschonarth.certification_project.modules.students.entities.CertificationStudentEntity;
 import com.joschonarth.certification_project.modules.students.entities.StudentEntity;
@@ -28,10 +30,21 @@ public class StudentCertificationAnswersUseCase {
     @Autowired
     private CertificationStudentRepository certificationStudentRepository;
 
-    public CertificationStudentEntity execute(StudentCertificationAnswerDTO dto) {
+    @Autowired
+    private VerifyCertificationUseCase verifyCertificationUseCase;
+
+    public CertificationStudentEntity execute(StudentCertificationAnswerDTO dto) throws Exception {
         
+        var hasCertification = this.verifyCertificationUseCase.execute(new VerifyCertificationDTO(dto.getEmail(), dto.getTechnology()));
+
+        if (hasCertification) {
+            throw new Exception("Você já tirou sua certificação!");
+        }
+
         List<QuestionEntity> questionsEntity = questionRepository.findByTechnology(dto.getTechnology());
         List<AnswersCertificationsEntity> answersCertifications = new ArrayList<>();
+
+        AtomicInteger correctAnswers = new AtomicInteger(0); 
 
         dto.getQuestionsAnswers()
             .stream().forEach(questionAnswer -> {
@@ -43,6 +56,7 @@ public class StudentCertificationAnswersUseCase {
 
                 if (findCorrectAlternative.getId().equals(questionAnswer.getAlternativeID())) {
                     questionAnswer.setCorrect(true);
+                    correctAnswers.incrementAndGet();
                 } else {
                     questionAnswer.setCorrect(false);
                 }
@@ -68,6 +82,7 @@ public class StudentCertificationAnswersUseCase {
         CertificationStudentEntity certificationStudentEntity = CertificationStudentEntity.builder()
             .technology(dto.getTechnology())
             .studentID(studentID)
+            .grade(correctAnswers.get())
             .build();
 
         var certificationStudentCreated = certificationStudentRepository.save(certificationStudentEntity);
