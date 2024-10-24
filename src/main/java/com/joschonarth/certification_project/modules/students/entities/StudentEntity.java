@@ -5,6 +5,8 @@ import java.util.UUID;
 
 import org.hibernate.annotations.CreationTimestamp;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import java.time.LocalDateTime;
 
 import jakarta.persistence.Column;
@@ -36,6 +38,7 @@ public class StudentEntity {
     private LocalDateTime createdAt;
 
     @OneToMany(mappedBy = "studentEntity")
+    @JsonBackReference
     private List<CertificationStudentEntity> certificationStudentEntities;
     
 }

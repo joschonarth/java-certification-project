@@ -1,6 +1,9 @@
 package com.joschonarth.certification_project.modules.students.controllers;
 
+import java.lang.Object;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -8,7 +11,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.joschonarth.certification_project.modules.students.dto.StudentCertificationAnswerDTO;
 import com.joschonarth.certification_project.modules.students.dto.VerifyCertificationDTO;
-import com.joschonarth.certification_project.modules.students.entities.CertificationStudentEntity;
 import com.joschonarth.certification_project.modules.students.useCases.StudentCertificationAnswersUseCase;
 import com.joschonarth.certification_project.modules.students.useCases.VerifyCertificationUseCase;
 
@@ -33,8 +35,13 @@ public class StudentController {
     }
 
     @PostMapping("/certification/answer")
-    public CertificationStudentEntity certificationAnswer(@RequestBody StudentCertificationAnswerDTO studentCertificationAnswerDTO) throws Exception {
-        return studentCertificationAnswersUseCase.execute(studentCertificationAnswerDTO);
+    public ResponseEntity<Object> certificationAnswer(@RequestBody StudentCertificationAnswerDTO studentCertificationAnswerDTO) throws Exception {
+        try {
+            var result = studentCertificationAnswersUseCase.execute(studentCertificationAnswerDTO);
+            return ResponseEntity.ok().body(result);
+        } catch(Exception e) {
+            return ResponseEntity.badRequest().body(e.getMessage());
+        } 
     }
     
 }
