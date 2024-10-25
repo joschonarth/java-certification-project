@@ -45,11 +45,13 @@ git clone https://github.com/joschonarth/java-certification-project
 cd java-certification-project
 ```
 
-📌 **3. Suba o container do PostgreSQL usando Docker executando o comando**:
+📌 **3. Executar o contêiner do PostgreSQL**: O contêiner será configurado automaticamente com a imagem `bitnami/postgresql:13.16.0` ao rodar o comando:
 
 ```bash
 docker-compose up -d
 ```
+
+Você poderá alterar a versão da imagem conforme preferir. Para isso, consulte a imagem oficial no site do Docker Hub: [bitnami/postgresql](https://hub.docker.com/r/bitnami/postgresql/tags).
 
 📌 **4. Compile e execute o projeto usando o Maven**:
 
@@ -97,11 +99,9 @@ A API estará disponível em: [http://localhost:8080](http://localhost:8080)
             {
                 "id": "f8e6e9b3-199b-4f0d-97ce-7e5bdc080da9",
                 "description": "Capacidade de um objeto de assumir várias formas"
-            },
-            ...
+            }
         ]
-    },
-    ...
+    }
 ]
 ```
 
@@ -241,14 +241,16 @@ A API estará disponível em: [http://localhost:8080](http://localhost:8080)
     }
 ]
 ```
+
 ## 📚 Documentações e Links Importantes
 
-- 📦 [Docker Documentation](https://docs.docker.com/) - Documentação oficial do Docker para instalação, configuração e uso de contêineres.
-- 🐘 [Baixar Imagem do Docker PostgreSQL](https://hub.docker.com/r/bitnami/postgresql/tags) - Acesse aqui para baixar a imagem do PostgreSQL `bitnami/postgresql:13.16.0`.
 - 🌱 [Spring Initializr](https://start.spring.io/) - Ferramenta para gerar projetos Spring Boot rapidamente com as dependências necessárias.
+- 📜 [Spring Boot Documentation](https://docs.spring.io/spring-boot/docs/current/reference/htmlsingle/) - Documentação oficial do Spring Boot.
+- 🐳 [Docker Documentation](https://docs.docker.com/) - Documentação oficial do Docker para instalação, configuração e uso de contêineres.
+- 🐘 [Imagem do PostgreSQL](https://hub.docker.com/r/bitnami/postgresql/tags) - Acesse aqui para consultar a imagem `bitnami/postgresql` do PostgreSQL no Docker Hub.
 - 📮 [Postman Download](https://www.postman.com/downloads/) - Baixe o Postman, a ferramenta para testar APIs.
 - 📊 [DBeaver Download](https://dbeaver.io/download/) - Baixe o DBeaver, a ferramenta de gerenciamento de banco de dados.
-- 📜 [Spring Boot Documentation](https://docs.spring.io/spring-boot/docs/current/reference/htmlsingle/) - Documentação oficial do Spring Boot.
+
 
 
 ## 🤝 Contribuindo
