@@ -32,31 +32,31 @@ Antes de rodar o projeto, certifique-se de ter os seguintes requisitos instalado
 
 ## 🚀 Como Rodar o Projeto
 
-**1. Clone o repositório**:
+📌 **1. Clone o repositório**:
 
 ```bash
 git clone https://github.com/joschonarth/java-certification-project
 ```
 
-**2. Entre no diretório do projeto**:
+📌 **2. Entre no diretório do projeto**:
 
 ```bash
 cd java-certification-project
 ```
 
-**3. Suba o container do PostgreSQL usando Docker executando o comando**:
+📌 **3. Suba o container do PostgreSQL usando Docker executando o comando**:
 
 ```bash
 docker-compose up -d
 ```
 
-**4. Compile e execute o projeto usando o Maven**:
+📌 **4. Compile e execute o projeto usando o Maven**:
 
 ```bash
 mvn spring-boot:run
 ```
 
-**5. Adicione as questões ao banco de dados**: Para inserir as questões no banco de dados, execute a classe CreateSeed usando o Maven:
+📌 **5. Adicione as questões ao banco de dados**: Para inserir as questões no banco de dados, execute a classe CreateSeed usando o Maven:
 
 ```bash
 mvn exec:java
