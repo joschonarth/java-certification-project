@@ -244,14 +244,11 @@ A API estará disponível em: [http://localhost:8080](http://localhost:8080)
 
 ## 📚 Documentações e Links Importantes
 
-- 🌱 [Spring Initializr](https://start.spring.io/) - Ferramenta para gerar projetos Spring Boot rapidamente com as dependências necessárias.
-- 📜 [Spring Boot Documentation](https://docs.spring.io/spring-boot/docs/current/reference/htmlsingle/) - Documentação oficial do Spring Boot.
+- 🌱 [Spring Boot Documentation](https://docs.spring.io/spring-boot/docs/current/reference/htmlsingle/) - Documentação oficial do Spring Boot.
 - 🐳 [Docker Documentation](https://docs.docker.com/) - Documentação oficial do Docker para instalação, configuração e uso de contêineres.
-- 🐘 [Imagem do PostgreSQL](https://hub.docker.com/r/bitnami/postgresql/tags) - Acesse aqui para consultar a imagem `bitnami/postgresql` do PostgreSQL no Docker Hub.
+- 🐘 [Imagem do PostgreSQL](https://hub.docker.com/r/bitnami/postgresql/tags) - Acesse aqui para consultar a imagem do PostgreSQL no Docker Hub.
 - 📮 [Postman Download](https://www.postman.com/downloads/) - Baixe o Postman, a ferramenta para testar APIs.
 - 📊 [DBeaver Download](https://dbeaver.io/download/) - Baixe o DBeaver, a ferramenta de gerenciamento de banco de dados.
-
-
 
 ## 🤝 Contribuindo
 
