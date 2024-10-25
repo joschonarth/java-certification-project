@@ -46,6 +46,16 @@ public class StudentCertificationAnswersUseCase {
 
         AtomicInteger correctAnswers = new AtomicInteger(0); 
 
+        var student = studentRepository.findByEmail(dto.getEmail());
+        UUID studentID;
+        if (student.isEmpty()) {
+            var studentCreated = StudentEntity.builder().email(dto.getEmail()).build();
+            studentCreated = studentRepository.save(studentCreated);
+            studentID = studentCreated.getId();
+        } else {
+            studentID = student.get().getId();
+        }
+
         dto.getQuestionsAnswers()
             .stream().forEach(questionAnswer -> {
                 var question = questionsEntity.stream()
@@ -64,20 +74,12 @@ public class StudentCertificationAnswersUseCase {
                 var answersCertificationsEntity = AnswersCertificationsEntity.builder()
                     .answerID(questionAnswer.getAlternativeID())
                     .questionID(questionAnswer.getQuestionID())
-                    .isCorrect(questionAnswer.isCorrect()).build();
+                    .studentID(studentID)
+                    .isCorrect(questionAnswer.isCorrect())
+                    .build();
 
                 answersCertifications.add(answersCertificationsEntity);
             });
-
-        var student = studentRepository.findByEmail(dto.getEmail());
-        UUID studentID;
-        if (student.isEmpty()) {
-            var studentCreated = StudentEntity.builder().email(dto.getEmail()).build();
-            studentCreated = studentRepository.save(studentCreated);
-            studentID = studentCreated.getId();
-        } else {
-            studentID = student.get().getId();
-        }
 
         CertificationStudentEntity certificationStudentEntity = CertificationStudentEntity.builder()
             .technology(dto.getTechnology())
