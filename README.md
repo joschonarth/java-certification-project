@@ -64,6 +64,9 @@ mvn exec:java
 
 Você pode alterar e adicionar questões no arquivo `src/main/resources/create.sql` conforme necessário.
 
+## 🌐 Acesso à API
+A API estará disponível em: [http://localhost:8080](http://localhost:8080)
+
 ## 🔗 Endpoints
 
 ### 📄 Obter Questões
