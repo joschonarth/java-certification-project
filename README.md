@@ -4,13 +4,15 @@ Esta API foi desenvolvida para gerenciar a geração de certificações para est
 
 ## 🛠️ Tecnologias Utilizadas
 
-- ☕ **Java 17**
-- 🌱 **Spring Boot**
-- 🗃️ **Spring Data JPA**
-- 🐘 **PostgreSQL**
-- 🐳 **Docker**
-- 📦 **Maven**
-- 🔧 **Lombok**
+- ☕ **Java 17**: Linguagem principal utilizada para desenvolver a aplicação.
+- 🌱 **Spring Boot**: Framework que facilita o desenvolvimento da aplicação, incluindo suporte a RESTful APIs.
+- 🗃️ **Spring Data JPA**: Abstração que simplifica o acesso a dados, permitindo interações mais fáceis com o banco de dados.
+- 🐘 **PostgreSQL**: Banco de dados relacional utilizado para armazenar as informações dos estudantes e das questões.
+- 🐳 **Docker**: Plataforma que permite a criação, execução e gerenciamento de contêineres, facilitando a configuração do ambiente.
+- 📦 **Maven**: Gerenciador de dependências e build da aplicação, utilizado para automatizar o processo de construção e gerenciamento de bibliotecas.
+- 🔧 **Lombok**: Biblioteca que reduz a verbosidade do código, gerando automaticamente getters, setters e outros métodos.
+- 📊 **DBeaver**: Ferramenta de gerenciamento de banco de dados, que permite visualizar e manipular dados de forma intuitiva.
+- 📮 **Postman**: Ferramenta para testar APIs, permitindo enviar requisições e visualizar as respostas de forma fácil.
 
 ## 💡 Funcionalidades
 
@@ -28,7 +30,6 @@ Antes de rodar o projeto, certifique-se de ter os seguintes requisitos instalado
 - 📦 [Maven](https://maven.apache.org/download.cgi)
 - 🐳 [Docker](https://www.docker.com/get-started)
 - 🐘 [PostgreSQL](https://www.postgresql.org/download/)
-
 
 ## 🚀 Como Rodar o Projeto
 
@@ -240,6 +241,15 @@ A API estará disponível em: [http://localhost:8080](http://localhost:8080)
     }
 ]
 ```
+## 📚 Documentações e Links Importantes
+
+- 📦 [Docker Documentation](https://docs.docker.com/) - Documentação oficial do Docker para instalação, configuração e uso de contêineres.
+- 🐘 [Baixar Imagem do Docker PostgreSQL](https://hub.docker.com/r/bitnami/postgresql/tags) - Acesse aqui para baixar a imagem do PostgreSQL `bitnami/postgresql:13.16.0`.
+- 🌱 [Spring Initializr](https://start.spring.io/) - Ferramenta para gerar projetos Spring Boot rapidamente com as dependências necessárias.
+- 📮 [Postman Download](https://www.postman.com/downloads/) - Baixe o Postman, a ferramenta para testar APIs.
+- 📊 [DBeaver Download](https://dbeaver.io/download/) - Baixe o DBeaver, a ferramenta de gerenciamento de banco de dados.
+- 📜 [Spring Boot Documentation](https://docs.spring.io/spring-boot/docs/current/reference/htmlsingle/) - Documentação oficial do Spring Boot.
+
 
 ## 🤝 Contribuindo
 
