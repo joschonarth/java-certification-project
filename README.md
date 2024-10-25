@@ -15,7 +15,8 @@ Esta API foi desenvolvida para gerenciar a geração de certificações para est
 ## 💡 Funcionalidades
 
 - 📊 **Avaliação de desempenho**: O estudante responde a um conjunto de questões, e o sistema avalia automaticamente seu desempenho.
-<!-- - 🏅 **Geração de certificações**: Estudantes com desempenho satisfatório recebem uma certificação. -->
+- 🏅 **Geração de certificações**: Estudantes com desempenho satisfatório recebem uma certificação.
+- 🔎 **Verificação de certificação**: Permite verificar se um estudante já foi certificado em uma determinada tecnologia.
 - 🏆 **Ranking dos melhores colocados**: O sistema gera um ranking dos 10 melhores estudantes, com base em suas pontuações.
 
 
@@ -29,17 +30,87 @@ Antes de rodar o projeto, certifique-se de ter os seguintes requisitos instalado
 - 🐘 [PostgreSQL](https://www.postgresql.org/download/)
 
 
+## 🚀 Como Rodar o Projeto
 
-
+**1. Clone o repositório**:
 
 ```bash
-Usuário pode fazer a prova
-
+git clone https://github.com/joschonarth/java-certification-project
 ```
 
+**2. Entre no diretório do projeto**:
+
+```bash
+cd java-certification-project
+```
+
+**3. Suba o container do PostgreSQL usando Docker executando o comando**:
+
+```bash
+docker-compose up -d
+```
+
+**4. Compile e execute o projeto usando o Maven**:
+
+```bash
+mvn spring-boot:run
+```
+
+**5. Adicione as questões ao banco de dados**: Para inserir as questões no banco de dados, execute a classe CreateSeed usando o Maven:
+
+```bash
+mvn exec:java
+```
+
+Você pode alterar e adicionar questões no arquivo `src/main/resources/create.sql` conforme necessário.
+
+## 🔗 Endpoints
+
+### 📄 Obter Questões
+- **Descrição**: Retorna um conjunto de questões com alternativas baseadas na tecnologia escolhida.
+- **Método**: `GET`
+- **Endpoint**: `/questions/technology/{technology}`
+
+🌐 **Exemplo de Requisição**: `http://localhost:8080/questions/technology/JAVA`
+
+📄 **Exemplo de Resposta:**
+
+```json
+[
+    {
+        "id": "b0ec9e6b-721c-43c7-9432-4d0b6eb15b01",
+        "technology": "JAVA",
+        "description": "Explique o conceito de polimorfismo em Java.",
+        "alternatives": [
+            {
+                "id": "1da0f5dd-7a02-4c34-8c60-4648b55141f2",
+                "description": "Herança simples"
+            },
+            {
+                "id": "9da03a4e-3c8d-4a32-87e1-9898938435c2",
+                "description": "Sobrecarga de métodos"
+            },
+            {
+                "id": "f8e6e9b3-199b-4f0d-97ce-7e5bdc080da9",
+                "description": "Capacidade de um objeto de assumir várias formas"
+            },
+            ...
+        ]
+    },
+    ...
+]
+```
+
+### 📝 Enviar Respostas para Certificação
+
+- **Descrição**: Recebe as respostas dos estudantes para a avaliação e gera a certificação se o desempenho for satisfatório.
+- **Método**: `POST`
+- **Endpoint**: `/students/certification/answer`
 
 
-```java
+**🌐 Exemplo de Requisição:**
+
+```json
 {
     "email": "joschonarth@gmail.com",
     "technology": "JAVA",
@@ -60,8 +131,9 @@ Usuário pode fazer a prova
 }
 ```
 
+**📄 Exemplo de Resposta:**
 
-```java
+```json
 {
     "id": "37277a90-5209-47cd-a491-d03ea134cf2f",
     "studentID": "028a1617-4c22-47c0-b3f6-718db9feb1b0",
@@ -103,3 +175,76 @@ Usuário pode fazer a prova
     ]
 }
 ```
+
+## 🔍 Verificar Certificação
+
+- **Descrição**: Verifica se o estudante já obteve certificação em uma tecnologia específica.
+- **Método**: `POST`
+- **Endpoint**: `/students/verifyCertification`
+
+**🌐 Exemplo de Requisição**:
+
+```json
+{
+    "email": "joschonarth@gmail.com",
+    "technology": "JAVA"
+}
+```
+
+**📄 Exemplo de Resposta:**
+
+```json
+"Usuário já fez a prova"
+```
+
+## 🏆 Obter Ranking dos 10 Melhores
+
+- **Descrição**: Retorna o ranking dos 10 estudantes com as maiores pontuações.
+- **Método**: `GET`
+- **Endpoint**: `/ranking/top10`
+
+**🌐 Exemplo de Requisição**: `http://localhost:8080/ranking/top10`
+
+**📄 Exemplo de Resposta:**
+
+```json
+[
+    {
+        "id": "37277a90-5209-47cd-a491-d03ea134cf2f",
+        "studentID": "028a1617-4c22-47c0-b3f6-718db9feb1b0",
+        "technology": "JAVA",
+        "grade": 2,
+        "createdAt": "2024-10-25T18:49:21.614685",
+        "studentEntity": {
+            "id": "028a1617-4c22-47c0-b3f6-718db9feb1b0",
+            "email": "joschonarth@gmail.com",
+            "createdAt": "2024-10-25T18:49:21.576053"
+        },
+        "answersCertificationsEntities": []
+    },
+    {
+        "id": "c3f6fc8c-b73c-45fb-a074-b7d07b8094fd",
+        "studentID": "512fcd4e-f74a-4b1f-908b-92ff3fb4d6a3",
+        "technology": "JAVA",
+        "grade": 1,
+        "createdAt": "2024-10-25T18:52:39.588055",
+        "studentEntity": {
+            "id": "512fcd4e-f74a-4b1f-908b-92ff3fb4d6a3",
+            "email": "maria@gmail.com",
+            "createdAt": "2024-10-25T18:52:39.558053"
+        },
+        "answersCertificationsEntities": []
+    }
+]
+```
+
+## 🤝 Contribuindo
+
+Se você deseja contribuir com o projeto, fique à vontade para abrir uma pull request ou uma issue.
+
+## 📞 Contato 
+
+<div>
+    <a href="https://www.linkedin.com/in/joschonarth/" target="_blank"><img src="https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white" target="_blank"></a>
+    <a href="mailto:joschonarth@gmail.com" target="_blank"><img src="https://img.shields.io/badge/Gmail-D14836?style=for-the-badge&logo=gmail&logoColor=white" target="_blank"></a>
+</div>
