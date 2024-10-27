@@ -4,7 +4,7 @@ Esta API foi desenvolvida para gerenciar a geração de certificações para est
 
 ## 🛠️ Tecnologias Utilizadas
 
-- ☕ **Java 17**: Linguagem principal utilizada para desenvolver a aplicação.
+- ☕ **Java**: Linguagem principal utilizada para desenvolver a aplicação.
 - 🌱 **Spring Boot**: Framework que facilita o desenvolvimento da aplicação, incluindo suporte a RESTful APIs.
 - 🗃️ **Spring Data JPA**: Abstração que simplifica o acesso a dados, permitindo interações mais fáceis com o banco de dados.
 - 🐘 **PostgreSQL**: Banco de dados relacional utilizado para armazenar as informações dos estudantes e das questões.
